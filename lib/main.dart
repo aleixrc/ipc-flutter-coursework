@@ -8,8 +8,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const MaterialApp(
-    title: 'P1 IPC',
-    debugShowCheckedModeBanner: false,
-    home: MainView(),
-  );
+        title: 'P1 IPC',
+        debugShowCheckedModeBanner: false,
+        home: MainView(),
+      );
 }

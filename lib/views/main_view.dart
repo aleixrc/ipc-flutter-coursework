@@ -7,52 +7,136 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Inicio'),
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
+            child: _Header(),
+          ),
+          const SizedBox(height: 32),
+          const _Body(),
+          const SizedBox(height: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: _Footer(),
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'Login',
+          style: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Row(
           children: [
-            const Text(
-              'Iniciar sesión',
-              style: TextStyle(fontSize: 24),
-            ),
             Container(
-              padding: const EdgeInsets.all(16),
-              child: const Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Usuario',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Contraseña',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ],
+              width: 22,
+              height: 22,
+              decoration: const BoxDecoration(
+                color: Colors.deepPurple,
+                shape: BoxShape.circle,
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ListViewScreen(),
-                  ),
-                );
-              },
-              child: const Text('Continuar'),
+            const SizedBox(width: 8),
+            Container(
+              width: 16,
+              height: 16,
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+                shape: BoxShape.circle,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              width: 10,
+              height: 10,
+              decoration: const BoxDecoration(
+                color: Colors.purple,
+                shape: BoxShape.circle,
+              ),
             ),
           ],
         ),
+      ],
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
+      child: const Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              icon: Icon(Icons.person),
+              labelText: 'Username',
+            ),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              icon: Icon(Icons.lock),
+              labelText: 'Password',
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Footer extends StatelessWidget {
+  const _Footer();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ListViewScreen(),
+              ),
+            );
+          },
+          child: const Text('LOGIN'),
+        ),
+      ],
     );
   }
 }

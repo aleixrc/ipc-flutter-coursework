@@ -11,24 +11,51 @@ class ListViewScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
-          tooltip: 'Volver',
         ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
-        children: const [
-          Text(
-            'Navegación completada correctamente',
-            style: TextStyle(fontSize: 22),
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: const Row(
+              children: [
+                Icon(Icons.check_circle, color: Colors.green),
+                SizedBox(width: 12),
+                Text('Navegación completada correctamente'),
+              ],
+            ),
           ),
-          SizedBox(height: 16),
-          Text('Has llegado a ListViewScreen.'),
-          SizedBox(height: 8),
-          Text('Elemento de ejemplo 1'),
-          SizedBox(height: 8),
-          Text('Elemento de ejemplo 2'),
-          SizedBox(height: 8),
-          Text('Elemento de ejemplo 3'),
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: const Row(
+              children: [
+                Icon(Icons.list),
+                SizedBox(width: 12),
+                Text('Elemento de ejemplo 1'),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: const Row(
+              children: [
+                Icon(Icons.star),
+                SizedBox(width: 12),
+                Text('Elemento de ejemplo 2'),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: const Row(
+              children: [
+                Icon(Icons.done),
+                SizedBox(width: 12),
+                Text('Elemento de ejemplo 3'),
+              ],
+            ),
+          ),
         ],
       ),
     );
