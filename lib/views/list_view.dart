@@ -15,6 +15,7 @@ class ListViewScreen extends StatefulWidget {
 
 class _ListViewScreenState extends State<ListViewScreen> {
   late Future<List<Product>> _productsFuture;
+  String _searchQuery = '';
 
   @override
   void initState() {
@@ -72,42 +73,96 @@ class _ListViewScreenState extends State<ListViewScreen> {
             );
           }
 
-          final products = snapshot.data ?? const <Product>[];
-          return ListView.builder(
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-              final product = products[index];
-              return Card(
-                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(10),
-                  leading: Hero(
-                    tag: 'product-image-${product.id}',
-                    child: Image.asset(
-                      product.image,
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.image_not_supported, size: 48),
+          final products = (snapshot.data ?? const <Product>[])
+              .where(
+                (product) => product.name.toLowerCase().contains(_searchQuery),
+              )
+              .toList();
+
+          return RefreshIndicator(
+            onRefresh: () async {
+              _reloadProducts();
+              await _productsFuture;
+            },
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  child: TextField(
+                    onChanged: (value) => setState(
+                      () => _searchQuery = value.trim().toLowerCase(),
                     ),
-                  ),
-                  title: Text(
-                    product.name,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text('${product.price.toStringAsFixed(2)} €'),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => DetailViewScreen(product: product),
+                    decoration: InputDecoration(
+                      labelText: 'Buscar producto',
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _searchQuery.isEmpty
+                          ? null
+                          : IconButton(
+                              onPressed: () =>
+                                  setState(() => _searchQuery = ''),
+                              icon: const Icon(Icons.clear),
+                            ),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
-              );
-            },
+                Expanded(
+                  child: products.isEmpty
+                      ? ListView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          children: const [
+                            SizedBox(height: 100),
+                            Center(child: Text('No hay productos')),
+                          ],
+                        )
+                      : ListView.builder(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemCount: products.length,
+                          itemBuilder: (context, index) {
+                            return _ProductCard(product: products[index]);
+                          },
+                        ),
+                ),
+              ],
+            ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _ProductCard extends StatelessWidget {
+  final Product product;
+
+  const _ProductCard({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(10),
+        leading: Hero(
+          tag: 'product-image-${product.id}',
+          child: Image.asset(
+            product.image,
+            width: 80,
+            height: 80,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.image_not_supported, size: 48),
+          ),
+        ),
+        title: Text(
+          product.name,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text('${product.price.toStringAsFixed(2)} €'),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => DetailViewScreen(product: product)),
+        ),
       ),
     );
   }
