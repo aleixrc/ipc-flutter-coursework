@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../models/item.dart';
+import 'detail_view.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({super.key});
@@ -80,17 +81,28 @@ class _ListViewScreenState extends State<ListViewScreen> {
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(10),
-                  leading: Image.asset(
-                    product.image,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
+                  leading: Hero(
+                    tag: 'product-image-${product.id}',
+                    child: Image.asset(
+                      product.image,
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Icon(Icons.image_not_supported, size: 48),
+                    ),
                   ),
                   title: Text(
                     product.name,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text('${product.price.toStringAsFixed(2)} €'),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => DetailViewScreen(product: product),
+                    ),
+                  ),
                 ),
               );
             },
