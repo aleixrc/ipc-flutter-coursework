@@ -1,0 +1,64 @@
+{
+    "products": [
+    {
+        "name" : "Router TP-Link AC1200",
+        "price" : 99.99,
+        "image" : "resources/Router TP-Link AC1200.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "Router Tenda AC6",
+        "price" : 26.09,
+        "image" : "resources/Router Tenda AC6.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "Switch TP-Link TL-SG105",
+        "price" : 3.90,
+        "image" : "resources/Switch TP-Link TL-SG105.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "EPSON Workforce ES-50",
+        "price" : 108.83,
+        "image" : "resources/EPSON Workforce ES-50.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "ScanMarker Air",
+        "price" : 119.00,
+        "image" : "resources/ScanMarker Air.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "Apple iPad Air 16GB",
+        "price" : 269.89,
+        "image" : "resources/Apple iPad Air 16GB.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "Echo Show 5",
+        "price" : 80.99,
+        "image" : "resources/Echo Show 5.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "Echo Dot",
+        "price" : 44.99,
+        "image" : "resources/Echo Dot.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "Google Nest Hub",
+        "price" : 94.06,
+        "image" : "resources/Google Nest Hub.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "name" : "Oculus Quest",
+        "price" : 549.00,
+        "image" : "resources/Oculus Quest.jpg",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet magna ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    }
+    ]
+}
